@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  auth-api:
+    build: 
+      context: ./auth-api
+      dockerfile: Dockerfile
+    container_name: imov-auth-service
+    ports:
+      - "3100:3100"
+    environment:
+      - PORT=3100
+      - JWT_SECRET=mAxiKkIpnHSuFoBu4x6pgZJ98b1ZEVPY0tDb7yhTBzp
+      # Quando formos conectar no RDS, as credenciais entrarão aqui:
+      # - DB_HOST=seu-rds-endpoint.aws.com
+      # - DB_USER=admin
+      # - DB_PASS=senha
+    restart: unless-stopped
