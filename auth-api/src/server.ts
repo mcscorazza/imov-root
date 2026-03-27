@@ -7,14 +7,14 @@ import { DynamoDBDocumentClient, GetCommand, PutCommand, UpdateCommand } from '@
 
 
 // ==========================================
-// CONFIGURAÇÃO DO DYNAMODB
+//     CONFIGURAÇÃO DO DYNAMODB
 // ==========================================
 const client = new DynamoDBClient({ region: process.env.AWS_REGION || 'sa-east-1' });
 const dynamoDb = DynamoDBDocumentClient.from(client);
 const USERS_TABLE = 'imov_users';
 
 // ==========================================
-// INTERFACES E TIPAGENS
+//     INTERFACES E TIPAGENS
 // ==========================================
 interface User {
     id: number;
@@ -45,7 +45,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'chave_secreta_imov_producao';
 const JWT_INVITE_SECRET = process.env.JWT_INVITE_SECRET || 'chave_secreta_convites';
 
 // ==========================================
-// MIDDLEWARE (Tipado com NextFunction)
+//     MIDDLEWARE (Tipado com NextFunction)
 // ==========================================
 const requireAdmin = (req: Request, res: Response, next: NextFunction): void => {
     const authHeader = req.headers.authorization;
@@ -74,7 +74,7 @@ const requireAdmin = (req: Request, res: Response, next: NextFunction): void => 
 };
 
 // ==========================================
-// ROTAS ATUALIZADAS PARA O DYNAMODB
+//     ROTAS ATUALIZADAS PARA O DYNAMODB
 // ==========================================
 
 app.post('/login', async (req: Request, res: Response): Promise<void> => {
