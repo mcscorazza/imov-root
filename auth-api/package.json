@@ -13,7 +13,9 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.1018.0",
     "@aws-sdk/client-ses": "^3.1018.0",
+    "@aws-sdk/lib-dynamodb": "^3.1018.0",
     "bcrypt": "^6.0.0",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
@@ -25,6 +27,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^25.5.0",
     "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^6.0.2"
   }
 }
