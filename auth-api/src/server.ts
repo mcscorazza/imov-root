@@ -112,7 +112,7 @@ app.post('/login', async (req: Request, res: Response): Promise<void> => {
     }
 });
 
-app.post('/invite', /* requireAdmin, */ async (req: Request, res: Response): Promise<void> => {
+app.post('/invite', requireAdmin, async (req: Request, res: Response): Promise<void> => {
     const { email, role } = req.body;
 
     try {
