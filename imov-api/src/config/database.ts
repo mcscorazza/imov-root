@@ -1,4 +1,4 @@
-const { Pool } = require('pg');
+import { Pool } from "pg";
 
 const pool = new Pool({
   host: process.env.DB_HOST,
@@ -7,10 +7,8 @@ const pool = new Pool({
   database: process.env.DB_NAME,
   port: 5432,
   ssl: {
-    rejectUnauthorized: false
-  }
+    rejectUnauthorized: false,
+  },
 });
 
-module.exports = {
-  query: (text, params) => pool.query(text, params),
-};
+export default pool;
