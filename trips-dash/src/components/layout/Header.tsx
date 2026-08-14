@@ -1,6 +1,7 @@
 // src/components/layout/Header.tsx
 import { useState } from 'react';
 import { useTripStore } from '../../store/useTripStore';
+import { Logo } from '../ui/Logo';
 
 interface HeaderProps {
   userName?: string;
@@ -41,16 +42,16 @@ export default function Header({ userName, userEmail, onLogout }: HeaderProps) {
   };
 
   return (
-    <header className="flex w-full h-[90px] bg-slate-100 shrink-0 border-b border-slate-200">
+    <header className="flex w-full h-15 bg-slate-100 shrink-0 gap-2">
 
       {/* COLUNA ESQUERDA: Logo */}
-      <div className="w-[280px] shrink-0 flex items-center pl-6">
-        <img src="/assets/imovt.png" alt="iMov Logo" className="h-12 w-auto object-contain" />
+      <div className="w-70 shrink-0 flex items-center justify-center">
+        <Logo height={50} />
       </div>
 
       {/* COLUNA CENTRAL: Busca */}
-      <div className="flex-1 flex items-center px-4">
-        <div className="flex items-center gap-4 bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-200">
+      <div className="flex-1 flex items-center w-full">
+        <div className="flex items-center gap-4 bg-white px-4 py-2 rounded-lg shadow border border-slate-200 w-full">
           <h2 className="text-[15px] font-bold text-slate-800 hidden md:block ml-2">
             Rastreamento
           </h2>
@@ -64,7 +65,6 @@ export default function Header({ userName, userEmail, onLogout }: HeaderProps) {
               className="w-[300px] px-3 py-1.5 text-sm bg-white border border-slate-300 rounded-md focus:outline-none focus:border-slate-500 placeholder-slate-400"
             />
 
-            {/* LIGANDO AS VARIÁVEIS AQUI */}
             <button
               onClick={handleSearch}
               disabled={isLoading}
@@ -78,7 +78,7 @@ export default function Header({ userName, userEmail, onLogout }: HeaderProps) {
       </div>
 
       {/* COLUNA DIREITA: Perfil */}
-      <div className="w-[230px] shrink-0 flex items-center justify-end pr-6">
+      <div className="w-70 shrink-0 flex items-center justify-end pr-6">
         <div className="text-right hidden sm:block">
           <div className="text-[15px] font-bold text-slate-800 leading-tight">{getShortName(userName)}</div>
           <div className="text-[8px] text-slate-500 font-semibold tracking-wide mt-0.5">{userEmail}</div>
@@ -86,7 +86,7 @@ export default function Header({ userName, userEmail, onLogout }: HeaderProps) {
         <div className="relative w-11 h-11 rounded-full border-2 border-teal-600 p-[2px] ml-4 shrink-0">
           <div className="w-full h-full rounded-full overflow-hidden bg-slate-200 flex items-center justify-center">
             <span className="text-slate-500 font-bold text-sm absolute z-0">{userName?.charAt(0).toUpperCase() || 'U'}</span>
-            <img src="/assets/avatar.png" alt="Avatar" className="w-full h-full object-cover relative z-10" onError={(e) => e.currentTarget.style.display = 'none'} />
+            <img src="/avatar-placeholder.png" alt="Avatar" className="w-full h-full object-cover relative z-10" onError={(e) => e.currentTarget.style.display = 'none'} />
           </div>
         </div>
         <button onClick={onLogout} title="Sair do Sistema" className="ml-2 p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-200 rounded-md transition-colors cursor-pointer">

@@ -1,6 +1,7 @@
 // src/store/useTripStore.ts
 import { create } from "zustand";
 import { api } from "../services/api";
+import type { TripData } from "../services/api";
 import { calcularDistanciaHaversine } from "../utils/math";
 // import type { TripData } from "../types/trip";
 
@@ -20,19 +21,25 @@ interface TripStore {
   summary: SidebarData | null;
   isLoading: boolean;
   fetchTrip: (batchId: string) => Promise<void>;
+
+  tripsList: TripData[];
+  isFetchingList: boolean;
+  fetchTripsList: () => Promise<void>;
 }
 
 export const useTripStore = create<TripStore>((set) => ({
   summary: null,
   isLoading: false,
+  tripsList: [],
+  isFetchingList: false,
 
   fetchTrip: async (batchId: string) => {
-    // 1. Inicia o loading
     set({ isLoading: true, summary: null });
 
     try {
       const listaViagens = await api.fetchListaDeViagens();
       const tripMeta =
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         listaViagens.find((t) => t.batch_id === batchId) || ({} as any);
       const trechos = await api.fetchDadosDoMapa(batchId);
       let danoTotal = 0;
@@ -89,6 +96,16 @@ export const useTripStore = create<TripStore>((set) => ({
     } catch (error) {
       console.error("Erro ao processar viagem:", error);
       set({ isLoading: false });
+    }
+  },
+  fetchTripsList: async () => {
+    set({ isFetchingList: true });
+    try {
+      const list = await api.fetchListaDeViagens();
+      set({ tripsList: list, isFetchingList: false });
+    } catch (error) {
+      console.error("Erro ao buscar lista de viagens:", error);
+      set({ isFetchingList: false });
     }
   },
 }));

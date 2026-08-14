@@ -4,6 +4,8 @@ import { loginRequest } from "./authConfig";
 
 import Header from "./components/layout/Header";
 import { Sidebar } from "./components/layout/Sidebar";
+import { TripDrawer } from "./components/layout/TripDrawer";
+
 import { Logo } from "./components/ui/Logo";
 import { useTripStore } from './store/useTripStore';
 import { useState, useEffect } from 'react';
@@ -83,6 +85,7 @@ function App() {
             userEmail={accounts[0]?.username}
             onLogout={handleLogout}
           />
+          <TripDrawer />
           <div className="flex flex-1 overflow-hidden gap-2">
             <div className="w-70 shrink-0 h-full">
               <Sidebar

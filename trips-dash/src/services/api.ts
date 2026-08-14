@@ -25,7 +25,7 @@ export interface MapSegment {
   geo_points: GeoPoint[];
 }
 
-const API_BASE_URL = "/api";
+const API_BASE_URL = "https://trips.svxdigital.com/api";
 
 async function fetchWithAuth(endpoint: string, options: RequestInit = {}) {
   const token = sessionStorage.getItem("accessToken") || "";
